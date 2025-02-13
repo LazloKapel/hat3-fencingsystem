@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Fencing System</title>
+        <link rel="stylesheet" href="style.css">
+        <script src="script.js"></script>
+        <script src="jquery-3.7.1.min.js" async></script> <!-- JQuery library. Loaded asynchronously to reduce load time.-->
+    </head>
+    <body onload="setup()">
+        <h1>Fencing System</h1>
+
+        <div id="nav">
+            <button class="nav" onclick="toggleWindow('fencersList_container','Fencer List',this)">Show Fencer List</button>
+            <button class="nav" onclick="toggleWindow('form_container','Add Fencer',this)">Show Add Fencer</button>
+            <button class="nav" onclick="toggleWindow('boutsList_container','Bout List',this)">Show Bout List</button>
+            <button class="nav" id="fencerDetails_containerButton" onclick="toggleWindow('fencerDetails_container','Fencer Details',this)">Show Fencer Details</button>
+        </div>
+
+        <div id="form_container" style="display:none">
+            <div id="form_containerheader">
+                Add Fencer
+            </div>
+            <div id="form_body">
+                <form id="addFencerForm" autocomplete="off"> <!-- autocomplete off to remove annoying suggestion box since there should be no repeat entries-->
+                    <label for="fname">First Name</label>
+                    <input id="fname" name="fname" type="text"/>
+    
+                    <label for="lname">Last Name</label>
+                    <input id="lname" name="lname" type="text"/>
+                    
+                    <button type="submit">Add Fencer</button>
+    
+                    <p id="errBox" style="display:none"></p>
+                </form>
+            </div>
+        </div>
+
+        <div id="fencersList_container" style="display:none">
+            <div id="fencersList_containerheader">
+                Fencer List
+            </div>
+            <div id="fencersList_body">
+            List not refreshed.
+            </div>
+        </div>
+
+        <div id="boutsList_container" style="display:none">
+            <div id="boutsList_containerheader">
+                Bouts List
+            </div>
+            <div id="boutsList_body">
+            List not refreshed.
+            </div>
+        </div>
+
+        <div id="fencerDetails_container" style="display:none">
+            <div id="fencerDetails_containerheader">
+                Fencer Details
+            </div>
+            <div id="fencerDetails_body">
+            No fencer selected.
+            </div>
+        </div>
+    </body>
+</html>
