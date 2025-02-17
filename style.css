@@ -5,8 +5,10 @@
     --background:white;
     --buttonNorm:#12664F;
     --buttonHover:#419e85;
+    --link:rgb(26, 13, 171);
 }
 
+/* Ensures proper scaling of objects when using % width */
 * {
     box-sizing: border-box;
 }
@@ -91,4 +93,15 @@ button.nav {
 
 button.nav:hover {  
     cursor:pointer;
+}
+
+/* Removes the change in link colour on click, and customises link appearance */
+a:link, a:visited {
+    text-decoration:none;
+    color:var(--link);
+}
+
+/* Underline appears when hovering over link */
+a:hover {
+    text-decoration:underline;
 }
