@@ -1,3 +1,12 @@
+/* Defining colours to be reused */
+:root {
+    --header:#295eff;
+    --body:#edf1ff;
+    --background:white;
+    --buttonNorm:#12664F;
+    --buttonHover:#419e85;
+}
+
 * {
     box-sizing: border-box;
 }
@@ -7,22 +16,20 @@ body {
     margin:16px;
 }
 
-/* Add Fencer Form */
-
-#form_container {
+.container {
     position:absolute;
     z-index:0;
 }
 
-#form_body {
+.body {
     width:300px;
-    background-color:#edf1ff;
+    background-color:var(--body);
     padding:10px;
     border-radius: 0px 0px 10px 10px;
 }
 
-#form_containerheader {
-    background-color:#295eff;
+.containerheader {
+    background-color:var(--header);
     width:100%;
     height:30px;
     border-radius: 10px 10px 0px 0px;
@@ -31,8 +38,10 @@ body {
     color:white;
 }
 
+/* Add Fencer Form */
+
 label {
-    color: #12664F;
+    color: var(--buttonNorm);
     font-weight:bold;
 }
 
@@ -52,7 +61,7 @@ input:hover, input:focus {
 }
 
 button {
-    background-color: #12664F;
+    background-color: var(--buttonNorm);
     color:white;
     border-radius:12px;
     width:60%;
@@ -62,7 +71,7 @@ button {
 }
 
 button:hover {
-    background-color: #419e85;
+    background-color: var(--buttonHover);
     cursor:pointer;
     width:80%;
     transition: width 0.5s;
@@ -82,78 +91,4 @@ button.nav {
 
 button.nav:hover {  
     cursor:pointer;
-}
-
-
-
-/* Fencers List */
-
-#fencersList_container {
-    position:absolute;
-    z-index:0;
-}
-
-#fencersList_body {
-    width:300px;
-    background-color:#edf1ff;
-    padding:10px;
-    border-radius: 0px 0px 10px 10px;
-}
-
-#fencersList_containerheader {
-    background-color:#295eff;
-    width:100%;
-    height:30px;
-    border-radius: 10px 10px 0px 0px;
-    text-align:center;
-    align-content: center;
-    color:white;
-}
-
-/* Bouts List */
-
-#boutsList_container {
-    position:absolute;
-    z-index:0;
-}
-
-#boutsList_body {
-    width:300px;
-    background-color:#edf1ff;
-    padding:10px;
-    border-radius: 0px 0px 10px 10px;
-}
-
-#boutsList_containerheader {
-    background-color:#295eff;
-    width:100%;
-    height:30px;
-    border-radius: 10px 10px 0px 0px;
-    text-align:center;
-    align-content: center;
-    color:white;
-}
-
-/* Fencer Details */
-
-#fencerDetails_container {
-    position:absolute;
-    z-index:0;
-}
-
-#fencerDetails_body {
-    width:300px;
-    background-color:#edf1ff;
-    padding:10px;
-    border-radius: 0px 0px 10px 10px;
-}
-
-#fencerDetails_containerheader {
-    background-color:#295eff;
-    width:100%;
-    height:30px;
-    border-radius: 10px 10px 0px 0px;
-    text-align:center;
-    align-content: center;
-    color:white;
 }
