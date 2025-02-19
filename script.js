@@ -37,9 +37,9 @@ function updateFencerDetails(fencerID) {
     let fencer = data.fencers[fencerID];
     let body = document.getElementById("fencerDetails_body");
 
-    body.innerHTML = 'ID: ' + fencerID + '<br>' + 
-        'First Name: ' + fencer.fname + '<br>' +
-        'Last Name: ' + fencer.lname;
+    body.innerHTML = '<strong>ID:</strong> ' + fencerID + '<br>' + 
+        '<strong>First Name:</strong> ' + fencer.fname + '<br>' +
+        '<strong>Last Name:</strong> ' + fencer.lname;
 }
 
 function updateFencerList() {
@@ -48,7 +48,7 @@ function updateFencerList() {
     let result = '';
     let linkElement = `<a href="#" onclick="toggleWindow('fencerDetails_container','Fencer Details',document.getElementById('fencerDetails_containerButton'),1);`;
     for (let i = 0; i < fencers.length; i++) {
-        result += linkElement + 'updateFencerDetails('+ i +`)">` + fencers[i].fname + ' ' + fencers[i].lname + '</a><br>';
+        result += linkElement + 'updateFencerDetails('+ i +`)"`+`title="`+fencers[i].fname + ' ' + fencers[i].lname+`">` + fencers[i].fname + ' ' + fencers[i].lname + '</a><br>';
     }
 
     if (result=='') {

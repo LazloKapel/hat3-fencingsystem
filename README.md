@@ -11,4 +11,9 @@ First version with basic operations.
 - Added functionality for moving windows on top of each other.
 ### v0.0.1
 #### Changes
-- 
+- Updated the header to be a separate section with a different background colour.
+- Added a logo to the header (currently a placeholder image).
+- Cut off overflowing names in the fencer list with an elipsis.
+- Added a hover tooltip to the fencer list so that overflowing names can be seen in full.
+- Prevented overflowing text in all other windows by allowing text to wrap halfway through words longer than the window width.
+- Boldened Fencer Details nametags.

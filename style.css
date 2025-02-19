@@ -6,6 +6,7 @@
     --buttonNorm:#12664F;
     --buttonHover:#419e85;
     --link:rgb(26, 13, 171);
+    --pageHeader:#beffcf;
 }
 
 /* Ensures proper scaling of objects when using % width */
@@ -15,6 +16,23 @@
 
 body {
     font-family:'Verdana';
+    margin:0;
+}
+
+header {
+    background-color:var(--pageHeader);
+    text-align:left;
+    display:flex;
+    align-items:center;
+    padding:10px;
+}
+
+#logo { /* logo image */
+    height:40px;
+    width:40px;
+}
+
+main {
     margin:16px;
 }
 
@@ -28,6 +46,13 @@ body {
     background-color:var(--body);
     padding:10px;
     border-radius: 0px 0px 10px 10px;
+    overflow:hidden; /* Cuts off overflowing text at the end of the div */
+    word-break:break-all; /* Allows words to be cut in half to overflow to the next line */
+}
+
+#fencersList_body {
+    white-space: nowrap; /* Prevents names from going over two lines */
+    text-overflow: ellipsis; /* Makes the end of overflowing names '...' */
 }
 
 .containerheader {
