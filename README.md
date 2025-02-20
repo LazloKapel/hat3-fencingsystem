@@ -32,3 +32,13 @@ Minor appearance/QoL improvements
 - Added a hover tooltip to the fencer list so that overflowing names can be seen in full.
 - Prevented overflowing text in all other windows by allowing text to wrap halfway through words longer than the window width.
 - Boldened Fencer Details nametags.
+### v0.0.4 (????)
+#### Summary
+Adds window resizing
+#### Changes
+- Changed the cursor on window headers to the move cursor.
+- Allowed windows to be resized by the user.
+- Prevented windows from being resized larger than the screen.
+- Added button to reset window size to the default.
+- Set intial position of all windows to the top left just below the header.
+- Allowed overflowing text within windows to be scrolled.

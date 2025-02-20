@@ -39,6 +39,8 @@ main {
 .container {
     position:absolute;
     z-index:0;
+    top:60px;
+    left:0px;
 }
 
 .body {
@@ -46,8 +48,10 @@ main {
     background-color:var(--body);
     padding:10px;
     border-radius: 0px 0px 10px 10px;
-    overflow:hidden; /* Cuts off overflowing text at the end of the div */
+    overflow:scroll; /* Cuts off overflowing text at the end of the div */
     word-break:break-all; /* Allows words to be cut in half to overflow to the next line */
+    resize:both; /* Allows resizing of boxes */
+    max-height:calc(100vh - 60px - 30px); /* prevents windows being larger than the screen 60=page header; 30=window header*/
 }
 
 #fencersList_body {
@@ -63,6 +67,19 @@ main {
     text-align:center;
     align-content: center;
     color:white;
+    cursor:move; /* Changes the cursor when hovering over the header */
+}
+
+.resettab { /* invisible div to allow double click for auto-resize */
+    height: 8px;
+    width: 8px;
+    position: absolute;
+    bottom: 1px;
+    right: 11px;
+    cursor:nw-resize;
+    pointer-events: auto; /* issue here */
+    background-color:black;
+    border-radius:2px;
 }
 
 /* Add Fencer Form */

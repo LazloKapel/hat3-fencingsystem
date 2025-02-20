@@ -141,8 +141,8 @@ function dragElement(elmnt) {
     pos3 = e.clientX;
     pos4 = e.clientY;
     // set the element's new position:
-    // ifs ensure the element will stay within the window
-    if ((elmnt.offsetTop - pos2 >0)*(elmnt.offsetTop - pos2 <= window.innerHeight - elmnt.offsetHeight)) {
+    // ifs ensure the element will stay within the window (60 since header is 60px high)
+    if ((elmnt.offsetTop - pos2 >60)*(elmnt.offsetTop - pos2 <= window.innerHeight - elmnt.offsetHeight)) {
         elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
     }
 
@@ -156,4 +156,11 @@ function dragElement(elmnt) {
     document.onmouseup = null;
     document.onmousemove = null;
   }
+}
+
+function resetSize(bodyID) {
+    let body = document.getElementById(bodyID);
+
+    body.style.height = 'auto';
+    body.style.width = '300px';
 }
