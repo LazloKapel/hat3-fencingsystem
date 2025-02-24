@@ -10,19 +10,20 @@
         <header>
             <img src="logo.png" id="logo">
             <div id="nav">
-                <button class="nav" onclick="toggleWindow('fencersList_container','Fencer List',this)">Show Fencer List</button>
-                <button class="nav" onclick="toggleWindow('form_container','Add Fencer',this)">Show Add Fencer</button>
-                <button class="nav" onclick="toggleWindow('boutsList_container','Bout List',this)">Show Bout List</button>
-                <button class="nav" id="fencerDetails_containerButton" onclick="toggleWindow('fencerDetails_container','Fencer Details',this)">Show Fencer Details</button>
+                <button class="nav" data-window='fencerList' data-text="Fencer List" onclick="toggleWindow(this)">Show Fencer List</button>
+                <button class="nav" data-window='form' data-text="Add Fencer" onclick="toggleWindow(this)">Show Add Fencer</button>
+                <button class="nav" data-window='boutList' data-text="Bout List" onclick="toggleWindow(this)">Show Bout List</button>
+                <button class="nav" data-window='fencerDetails' data-text="Fencer Details" onclick="toggleWindow(this)">Show Fencer Details</button>
             </div>
         </header>
         <main>
-            <div id="form_container" class="container" style="display:none">
-                <div id="form_containerheader" class="containerheader">
+            <div id="form_container" data-window='form' class="container" style="display:none">
+                <div id="form_header" data-window='form' class="containerheader">
                     Add Fencer
                 </div>
+                <div class="close" title="Close window" data-window="form" onclick="toggleWindow(this, 2)"></div>
                 <div class="resettab" title="Double click to reset window size" ondblclick="resetSize('form_body')"></div>
-                <div id="form_body" class="body">
+                <div id="form_body" data-window='form' class="body">
                     <form id="addFencerForm" autocomplete="off"> <!-- autocomplete off to remove annoying suggestion box since there should be no repeat entries-->
                         <label for="fname">First Name</label>
                         <input id="fname" name="fname" type="text"/>
@@ -37,32 +38,35 @@
                 </div>
             </div>
 
-            <div id="fencersList_container" style="display:none" class="container">
-                <div id="fencersList_containerheader" class="containerheader">
+            <div id="fencerList_container" data-window='fencerList' style="display:none" class="container">
+                <div id="fencerList_header" data-window='fencerList' class="containerheader">
                     Fencer List
                 </div>
-                <div class="resettab" title="Double click to reset window size" ondblclick="resetSize('fencersList_body')"></div>
-                <div id="fencersList_body" class="body">
+                <div class="close" title="Close window" data-window="fencerList" onclick="toggleWindow(this, 2)"></div>
+                <div class="resettab" title="Double click to reset window size" ondblclick="resetSize('fencerList_body')"></div>
+                <div id="fencerList_body" data-window='fencerList' class="body">
                 List not refreshed.
                 </div>
             </div>
 
-            <div id="boutsList_container" style="display:none" class="container">
-                <div id="boutsList_containerheader" class="containerheader">
+            <div id="boutList_container" data-window='boutList' style="display:none" class="container">
+                <div id="boutList_header" data-window='boutList' class="containerheader">
                     Bouts List
                 </div>
-                <div class="resettab" title="Double click to reset window size" ondblclick="resetSize('boutsList_body')"></div>
-                <div id="boutsList_body" class="body">
+                <div class="close" title="Close window" data-window="boutList" onclick="toggleWindow(this, 2)"></div>
+                <div class="resettab" title="Double click to reset window size" ondblclick="resetSize('boutList_body')"></div>
+                <div id="boutList_body" data-window='boutList' class="body">
                 List not refreshed.
                 </div>
             </div>
 
-            <div id="fencerDetails_container" style="display:none" class="container">
-                <div id="fencerDetails_containerheader" class="containerheader">
+            <div id="fencerDetails_container" data-window='fencerDetails' style="display:none" class="container">
+                <div id="fencerDetails_header" data-window='fencerDetails' class="containerheader">
                     Fencer Details
                 </div>
+                <div class="close" title="Close window" data-window="fencerDetails" onclick="toggleWindow(this, 2)"></div>
                 <div class="resettab" title="Double click to reset window size" ondblclick="resetSize('fencerDetails_body')"></div>
-                <div id="fencerDetails_body" class="body">
+                <div id="fencerDetails_body" data-window='fencerDetails' class="body">
                 No fencer selected.
                 </div>
             </div>

@@ -82,6 +82,18 @@ main {
     border-radius:2px;
 }
 
+.close { /* invisible div to allow double click for auto-resize */
+    height: 10px;
+    width: 10px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor:pointer;
+    pointer-events: auto; /* issue here */
+    background-color:red;
+    border-radius:5px;
+}
+
 /* Add Fencer Form */
 
 label {

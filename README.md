@@ -32,7 +32,7 @@ Minor appearance/QoL improvements
 - Added a hover tooltip to the fencer list so that overflowing names can be seen in full.
 - Prevented overflowing text in all other windows by allowing text to wrap halfway through words longer than the window width.
 - Boldened Fencer Details nametags.
-### v0.0.4 (????)
+### v0.0.4 (a5eb0e2)
 #### Summary
 Adds window resizing
 #### Changes
@@ -40,5 +40,12 @@ Adds window resizing
 - Allowed windows to be resized by the user.
 - Prevented windows from being resized larger than the screen.
 - Added button to reset window size to the default.
-- Set intial position of all windows to the top left just below the header.
+- Set initial position of all windows to the top left just below the header.
 - Allowed overflowing text within windows to be scrolled.
+### v0.0.5 (????)
+#### Summary
+Improves the way data is passed between HTML elements and JS functions
+#### Changes
+- Elements subordinate to windows given data-window property to identify them easily.
+- Added a getWindowObjects() function which fetches all the elements attached to a window (container, body, header, button, etc.).
+- Added a red close window button to the top right of all windows.

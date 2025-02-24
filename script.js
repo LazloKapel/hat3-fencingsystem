@@ -9,23 +9,36 @@ var z = 1; // counter for z-index property of moveable boxes.
 function setup() {
     document.getElementById('addFencerForm').addEventListener("submit", addFencer);
     dragElement(document.getElementById("form_container"));
-    dragElement(document.getElementById("fencersList_container"));
-    dragElement(document.getElementById("boutsList_container"));
+    dragElement(document.getElementById("fencerList_container"));
+    dragElement(document.getElementById("boutList_container"));
     dragElement(document.getElementById("fencerDetails_container"));
 }
 
-function toggleWindow(targetID,label,button, direction=0) {
-    // direction 0  = toggle; direction 1 = turn on; direction 2 = turn off
-    let container = document.getElementById(targetID);
+function getWindowObjects(elmnt) {
+    let windowName = elmnt.dataset.window;
+    let container = document.getElementById(windowName+'_container');
+    let header = $(container).children(".header").filter().filter(".body").prevObject[0]; // JQuery to get child element that is the header
+    let body = $(container).children().filter().filter(".body").prevObject[0]; // JQuery to get child element that is the body
+    let button = document.querySelector(`[class="nav"][data-window='${windowName}']`);
+    return {'windowName':windowName, 'container':container, 'header':header, 'body':body, 'button':button};
+}
 
-    if (targetID=="fencersList_container") {
+function toggleWindow(elmnt, direction=0) {
+    // direction 0  = toggle; direction 1 = turn on; direction 2 = turn off
+    let values = getWindowObjects(elmnt);
+    let windowName = values['windowName'];
+    let container = values['container'];
+    let button = values['button'];
+    let label = button.dataset.text;
+
+    if (windowName=="fencerList") {
         updateFencerList();
     }
 
     if ((container.style.display == 'none') || (direction==1)) {
         container.style.display = 'block';
         button.innerHTML = 'Hide '+label;
-    } else if ((container.style.display == 'none') || (direction==0)) {
+    } else if ((container.style.display != 'none') || (direction==2)) {
         container.style.display = 'none';
         button.innerHTML = 'Show '+label;
     } else {
@@ -43,7 +56,7 @@ function updateFencerDetails(fencerID) {
 }
 
 function updateFencerList() {
-    let container = document.getElementById("fencersList_body");
+    let container = document.getElementById("fencerList_body");
     let fencers = data.fencers;
     let result = '';
     let linkElement = `<a href="#" onclick="toggleWindow('fencerDetails_container','Fencer Details',document.getElementById('fencerDetails_containerButton'),1);`;
@@ -58,7 +71,7 @@ function updateFencerList() {
 }
 
 function updateBoutList() {
-    let container = document.getElementById("boutsList_body");
+    let container = document.getElementById("boutList_body");
     let bouts = data.bouts;
     let fencers = data.fencers;
     let result = '';
@@ -110,9 +123,10 @@ function addFencer(event) {
 
 function dragElement(elmnt) {
   var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-  if (document.getElementById(elmnt.id + "header")) {
+  let windowName = elmnt.dataset.window;
+  if (document.getElementById(windowName + "_header")) {
     // if present, the header is where you move the DIV from:
-    document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
+    document.getElementById(windowName + "_header").onmousedown = dragMouseDown;
   } else {
     // otherwise, move the DIV from anywhere inside the DIV:
     elmnt.onmousedown = dragMouseDown;
