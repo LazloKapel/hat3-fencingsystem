@@ -17,7 +17,7 @@
             </div>
         </header>
         <main>
-            <div id="form_container" data-window='form' class="container" style="display:none">
+            <div id="form_container" data-window='form' class="container" style="display:none;left:300px;">
                 <div id="form_header" data-window='form' class="containerheader">
                     Add Fencer
                 </div>
@@ -49,18 +49,19 @@
                 </div>
             </div>
 
-            <div id="boutList_container" data-window='boutList' style="display:none" class="container">
+            <div id="boutList_container" data-window='boutList' style="display:none;left:calc(100vw - 300px);" class="container"> <!--aligned to right via moving to other side of right edge of screen (100% screen width from right edge) minus the width of the window (300px)-->
                 <div id="boutList_header" data-window='boutList' class="containerheader">
                     Bouts List
                 </div>
                 <div class="close" title="Close window" data-window="boutList" onclick="toggleWindow(this, 2)"></div>
                 <div class="resettab" title="Double click to reset window size" ondblclick="resetSize('boutList_body')"></div>
                 <div id="boutList_body" data-window='boutList' class="body">
-                List not refreshed.
+                    <p>List not refreshed.</p>
+                    <button onclick="generateBouts()">Generate Bouts</button>
                 </div>
             </div>
 
-            <div id="fencerDetails_container" data-window='fencerDetails' style="display:none" class="container">
+            <div id="fencerDetails_container" data-window='fencerDetails' style="display:none;left:300px;top:280px" class="container">
                 <div id="fencerDetails_header" data-window='fencerDetails' class="containerheader">
                     Fencer Details
                 </div>

@@ -1,7 +1,7 @@
 var data = JSON.parse(
-    '{"competitionName":"default", "fencers":['+
+    '{"competitionName":"default", "fencers":['+ // format {"fname":"John","lname":"Doe"}
     '], "bouts":['+
-    '{"fencer1ID":"0","fencer2ID":"1"}]}'
+    ']}' // format {"fencer1ID":"0","fencer2ID":"1"}
 );
 
 var z = 1; // counter for z-index property of moveable boxes.
@@ -18,8 +18,11 @@ function getWindowObjects(elmnt) {
     let windowName = elmnt.dataset.window;
     let container = document.getElementById(windowName+'_container');
     let header = $(container).children(".header").filter().filter(".body").prevObject[0]; // JQuery to get child element that is the header
-    let body = $(container).children().filter().filter(".body").prevObject[0]; // JQuery to get child element that is the body
+    let body = $(container).children(".body").filter().filter(".body").prevObject[0]; // JQuery to get child element that is the body
     let button = document.querySelector(`[class="nav"][data-window='${windowName}']`);
+    if (!(button)) {
+        button = document.querySelector(`[class="nav toggled"][data-window='${windowName}']`);
+    }
     return {'windowName':windowName, 'container':container, 'header':header, 'body':body, 'button':button};
 }
 
@@ -33,14 +36,18 @@ function toggleWindow(elmnt, direction=0) {
 
     if (windowName=="fencerList") {
         updateFencerList();
+    } else if (windowName=="boutList") {
+        updateBoutList();
     }
 
     if ((container.style.display == 'none') || (direction==1)) {
         container.style.display = 'block';
         button.innerHTML = 'Hide '+label;
+        button.classList.add("toggled");
     } else if ((container.style.display != 'none') || (direction==2)) {
         container.style.display = 'none';
         button.innerHTML = 'Show '+label;
+        button.classList.remove("toggled");
     } else {
         throw new Error('No condition met for toggle window.')
     }
@@ -59,7 +66,7 @@ function updateFencerList() {
     let container = document.getElementById("fencerList_body");
     let fencers = data.fencers;
     let result = '';
-    let linkElement = `<a href="#" onclick="toggleWindow('fencerDetails_container','Fencer Details',document.getElementById('fencerDetails_containerButton'),1);`;
+    let linkElement = `<a href="#" onclick="toggleWindow(document.getElementById('fencerDetails_container'),1);`;
     for (let i = 0; i < fencers.length; i++) {
         result += linkElement + 'updateFencerDetails('+ i +`)"`+`title="`+fencers[i].fname + ' ' + fencers[i].lname+`">` + fencers[i].fname + ' ' + fencers[i].lname + '</a><br>';
     }
@@ -71,22 +78,23 @@ function updateFencerList() {
 }
 
 function updateBoutList() {
-    let container = document.getElementById("boutList_body");
+    let body = document.getElementById("boutList_body");
     let bouts = data.bouts;
     let fencers = data.fencers;
     let result = '';
     let fencer1;
     let fencer2;
     for (let i = 0; i < bouts.length; i++) {
-        fencer1 = fencers[bouts[i].fencer1ID];
-        fencer2 = fencers[bouts[i].fencer2ID];
-        result += fencer1.fname + ' ' + fencer1.lname + ' v ' + fencer2.fname + ' ' + fencer2.lname + '<br>';
+        fencer1 = fencers[parseInt(bouts[i].fencer1ID)];
+        console.log(fencer1);
+        fencer2 = fencers[parseInt(bouts[i].fencer2ID)];
+        result += '<strong>' + fencer1.fname + ' ' + fencer1.lname + '</strong> v <strong>' + fencer2.fname + ' ' + fencer2.lname + '</strong><br>';
     }
 
     if (result=='') {
-        result = 'No fencers are in the database.';
+        result = 'No bouts are in the database.';
     }
-    container.innerHTML = result;
+    body.getElementsByTagName("p")[0].innerHTML = result;
 }
 
 function addFencer(event) {
@@ -121,9 +129,25 @@ function addFencer(event) {
     updateFencerList();
 }
 
+function generateBouts() {
+    let fencers = data.fencers;
+    for (let key1 in fencers) {
+        for (let key2 in fencers) {
+            if (parseInt(key1)<parseInt(key2)) {
+                let entry = JSON.parse('{"fencer1ID":"'+key1+'","fencer2ID":"'+(key2)+'","fencer1Score:":0,"fencer2Score":0}');
+                console.log(entry);
+                let index = data.bouts.length;
+                data.bouts[index] = entry;
+            }
+        }
+    }
+    updateBoutList();
+}
+
 function dragElement(elmnt) {
   var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
   let windowName = elmnt.dataset.window;
+  let body = document.getElementById(windowName + "_body");
   if (document.getElementById(windowName + "_header")) {
     // if present, the header is where you move the DIV from:
     document.getElementById(windowName + "_header").onmousedown = dragMouseDown;
@@ -138,6 +162,13 @@ function dragElement(elmnt) {
     // layers element on top of others
     z = z+1
     elmnt.style.zIndex = z;
+    // ensure window isn't locked out of screen
+    let currentHeight = body.offsetHeight;
+    let maximumHeight = parseInt(window.getComputedStyle(body,null).getPropertyValue("max-height")); // parseInt required as getPropertyValue returns "999px" instead of 999.
+    if (currentHeight>=maximumHeight) {
+        elmnt.style.top = '60px'; // moves the window to the top of the screen
+        elmnt.style.height = maximumHeight; // shrinks the window to the maximum height so that it doesn't overflow.
+    }
     // get the mouse cursor position at startup:
     pos3 = e.clientX;
     pos4 = e.clientY;

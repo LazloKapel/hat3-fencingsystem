@@ -42,10 +42,25 @@ Adds window resizing
 - Added button to reset window size to the default.
 - Set initial position of all windows to the top left just below the header.
 - Allowed overflowing text within windows to be scrolled.
-### v0.0.5 (????)
+### v0.0.5 (8fb700c)
 #### Summary
 Improves the way data is passed between HTML elements and JS functions
 #### Changes
 - Elements subordinate to windows given data-window property to identify them easily.
 - Added a getWindowObjects() function which fetches all the elements attached to a window (container, body, header, button, etc.).
 - Added a red close window button to the top right of all windows.
+### v0.1.0 (???????)
+#### Summary
+Bout list window made functional and other visual changes
+#### Changes
+- Added animations for nav buttons.
+- Changed colour of nav buttons when toggled via the new 'toggled' class.
+- Added default window locations which do not overlap.
+- Improved systems to make sure windows don't get stuck off the screen.
+- Added function to generate all bout combinations for provided fencers.
+- Made the Bout List window functional.
+- Added auto-updating functionality to the Bout List.
+- Fixed some functions erroneously not updated to new data transfer system released in v0.0.5.
+- Added paragraph style for windows with text and buttons.
+- Changed colour scheme.
+- Added a margin to separate the logo from the nav buttons in the header.
