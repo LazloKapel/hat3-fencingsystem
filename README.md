@@ -49,7 +49,7 @@ Improves the way data is passed between HTML elements and JS functions
 - Elements subordinate to windows given data-window property to identify them easily.
 - Added a getWindowObjects() function which fetches all the elements attached to a window (container, body, header, button, etc.).
 - Added a red close window button to the top right of all windows.
-### v0.1.0 (???????)
+### v0.1.0 (61694e6)
 #### Summary
 Bout list window made functional and other visual changes
 #### Changes
@@ -64,3 +64,10 @@ Bout list window made functional and other visual changes
 - Added paragraph style for windows with text and buttons.
 - Changed colour scheme.
 - Added a margin to separate the logo from the nav buttons in the header.
+### v0.1.1 (???????)
+#### Summary
+Bout Details window added
+#### Changes
+- Added a Bout Details window similar to the Fencer Details window.
+- Added a button to toggle the Bout Details window.
+- Added links to the Bout List window to access entries in the Bout Details window.

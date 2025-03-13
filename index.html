@@ -14,6 +14,7 @@
                 <button class="nav" data-window='form' data-text="Add Fencer" onclick="toggleWindow(this)">Show Add Fencer</button>
                 <button class="nav" data-window='boutList' data-text="Bout List" onclick="toggleWindow(this)">Show Bout List</button>
                 <button class="nav" data-window='fencerDetails' data-text="Fencer Details" onclick="toggleWindow(this)">Show Fencer Details</button>
+                <button class="nav" data-window='boutDetails' data-text="Bout Details" onclick="toggleWindow(this)">Show Bout Details</button>
             </div>
         </header>
         <main>
@@ -69,6 +70,17 @@
                 <div class="resettab" title="Double click to reset window size" ondblclick="resetSize('fencerDetails_body')"></div>
                 <div id="fencerDetails_body" data-window='fencerDetails' class="body">
                 No fencer selected.
+                </div>
+            </div>
+
+            <div id="boutDetails_container" data-window='boutDetails' style="display:none;left:calc(100vw - 300px);top:280px" class="container">
+                <div id="boutDetails_header" data-window='boutDetails' class="containerheader">
+                    Bout Details
+                </div>
+                <div class="close" title="Close window" data-window="boutDetails" onclick="toggleWindow(this, 2)"></div>
+                <div class="resettab" title="Double click to reset window size" ondblclick="resetSize('boutDetails_body')"></div>
+                <div id="boutDetails_body" data-window='boutDetails' class="body">
+                No bout selected.
                 </div>
             </div>
         </main>

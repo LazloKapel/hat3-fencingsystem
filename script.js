@@ -12,6 +12,7 @@ function setup() {
     dragElement(document.getElementById("fencerList_container"));
     dragElement(document.getElementById("boutList_container"));
     dragElement(document.getElementById("fencerDetails_container"));
+    dragElement(document.getElementById("boutDetails_container"));
 }
 
 function getWindowObjects(elmnt) {
@@ -62,6 +63,17 @@ function updateFencerDetails(fencerID) {
         '<strong>Last Name:</strong> ' + fencer.lname;
 }
 
+function updateBoutDetails(boutID) {
+    let bout = data.bouts[boutID];
+    let body = document.getElementById("boutDetails_body");
+    let fencer1 = data.fencers[bout.fencer1ID];
+    let fencer2 = data.fencers[bout.fencer2ID];
+
+    body.innerHTML = '<strong>ID:</strong> ' + boutID + '<br>' + 
+        '<strong>Fencer 1:</strong> ' + fencer1.fname + ' ' + fencer1.lname + '<br>' +
+        '<strong>Fencer 1:</strong> ' + fencer2.fname + ' ' + fencer2.lname;
+}
+
 function updateFencerList() {
     let container = document.getElementById("fencerList_body");
     let fencers = data.fencers;
@@ -82,13 +94,16 @@ function updateBoutList() {
     let bouts = data.bouts;
     let fencers = data.fencers;
     let result = '';
+    let versus;
     let fencer1;
     let fencer2;
+    let linkElement = `<a href="#" onclick="toggleWindow(document.getElementById('boutDetails_container'),1);`;
     for (let i = 0; i < bouts.length; i++) {
         fencer1 = fencers[parseInt(bouts[i].fencer1ID)];
         console.log(fencer1);
         fencer2 = fencers[parseInt(bouts[i].fencer2ID)];
-        result += '<strong>' + fencer1.fname + ' ' + fencer1.lname + '</strong> v <strong>' + fencer2.fname + ' ' + fencer2.lname + '</strong><br>';
+        versus = '<strong>' + fencer1.fname + ' ' + fencer1.lname + '</strong> v <strong>' + fencer2.fname + ' ' + fencer2.lname + '</strong>';
+        result += linkElement + 'updateBoutDetails('+ i +`)"`+`title="`+fencer1.fname + ' ' + fencer1.lname + ' v ' + fencer2.fname + ' ' + fencer2.lname+`">` + versus +'</a><br>';
     }
 
     if (result=='') {
